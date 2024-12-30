@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 const bookingRoutes=require('./routes/bookingRoute')
 const registerRoutes=require('./routes/registerRoutes')
-const loginRoutes=require('./routes/loginroutes')
+const loginRoutes=require('./routes/loginRoutes')
 const cartRoutes=require('./routes/cartRoute')
 const itemRoutes=require('./routes/itemRoute')
 const orderRoutes=require('./routes/orderRoute')
