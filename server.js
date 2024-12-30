@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 
-const bookingRoutes=require('./routes/bookingroute')
+const bookingRoutes=require('./routes/bookingRoute')
 const registerRoutes=require('./routes/registerroutes')
 const loginRoutes=require('./routes/loginroutes')
 const cartRoutes=require('./routes/cartRoute')
