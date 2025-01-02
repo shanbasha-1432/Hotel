@@ -8,6 +8,13 @@ const decreasequantity = async (req, res) => {
                 const item = cart.items.find((item) => item.itemId.toString() === itemId);
                 item.quantity -= 1;
                 item.subtotal=item.price*item.quantity;
+
+                cart.totalPrice = 0;
+                cart.totalQuantity = 0;
+                cart.items.forEach(item => {
+                    cart.totalPrice += item.subtotal;
+                    cart.totalQuantity += item.quantity;
+                });
         
         if (item.quantity === 0) {
             // await cartSchema.deleteOne({ itemId: req.params.itemId });
