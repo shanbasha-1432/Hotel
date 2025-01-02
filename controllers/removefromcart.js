@@ -6,8 +6,15 @@ const removefromcart = async (req, res) => {
         const cart = await cartSchema.findOne({ userId });
                        // const item = await cart.items.itemId.find({itemId,userId})
                        const item = cart.items.find((item) => item.itemId.toString() === itemId);
-                       await cart.deleteOne({item})
-         await cart.save();             
+                       cart.items.pull(item)
+                    //    await cart.deleteOne({item})
+        cart.totalPrice = 0;
+        cart.totalQuantity = 0;
+        cart.items.forEach(item => {
+            cart.totalPrice += item.subtotal;
+            cart.totalQuantity += item.quantity;
+        });
+        await cart.save();             
         res.status(200).json({ message: 'Item removed from cart',cart });
     } catch (error) {
         res.status(500).json({ message: 'Error processing request', error });
