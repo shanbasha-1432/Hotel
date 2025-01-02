@@ -1,5 +1,5 @@
-const cartSchema = require('../models/cartschemamain');
 
+const cartSchema = require('../models/cartschemamain')
 const increasequantity = async (req, res) => {
     const { itemId,userId } = req.params;
     try {
@@ -8,8 +8,15 @@ const increasequantity = async (req, res) => {
         const item = cart.items.find((item) => item.itemId.toString() === itemId);
         item.quantity += 1;
         item.subtotal=item.price*item.quantity;
-        cart.totalPrice = item.subtotal;
-        cart.totalQuantity = item.quantity;
+        // cart.totalPrice = item.subtotal;
+        // cart.totalQuantity = item.quantity;
+
+        cart.totalPrice = 0;
+        cart.totalQuantity = 0;
+        cart.items.forEach(item => {
+            cart.totalPrice += item.subtotal;
+            cart.totalQuantity += item.quantity;
+        });
         await cart.save();
         res.status(200).json({ message: 'Item quantity increased',cart });
     } catch (error) {
