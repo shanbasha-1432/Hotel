@@ -14,6 +14,11 @@ const removefromcart = async (req, res) => {
             cart.totalPrice += item.subtotal;
             cart.totalQuantity += item.quantity;
         });
+        if(cart.items.length === 0) {
+            await cart.deleteOne();
+            return res.status(200).json({message:'cart cleared'});
+        }
+
         await cart.save();             
         res.status(200).json({ message: 'Item removed from cart',cart });
     } catch (error) {
