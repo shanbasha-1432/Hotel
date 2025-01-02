@@ -23,7 +23,7 @@ const bookingSchema = new mongoose.Schema({
         required:true,
     },
     persons:{
-        type:Number,
+        type:String,
         required:true
     }
 });
