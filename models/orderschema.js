@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
-
 const OrderSchema = new mongoose.Schema({
-    orders: [
-      {
-        user: {
-          userid: { type: String,
-             required: true }
-        },
-        orderdetails: [
+  userid: { type: Number, required: true },
+
+orderdetails: [
           {
             name: { type: String, 
               required: true
@@ -17,12 +12,15 @@ const OrderSchema = new mongoose.Schema({
               },
             quantity: { type: Number, 
               required: true 
+            },
+            status: {    
+              type: String, 
+              required: true, 
+             enum: ['PENDING', 'PROCESSING','COMPLETED'], 
+              default: 'PENDING'
             }
           }
-        ]
-      }
-    ]
-  });
-  
-  const Order = mongoose.model('Order', OrderSchema);
+        ],
+});
+  const Order = mongoose.model('Order',OrderSchema);
   module.exports=Order;
