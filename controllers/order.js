@@ -10,12 +10,12 @@ const createOrder=async(req,res)=>{
     if(Orderr){
       Orderr.orderdetails.push(...orderdetails);
       await Orderr.save();
-      res.status(200).json({message:'Order updated successfully'});
+      res.status(200).json({message:'Order updated successfully',Orderr});
     } 
     else {
       const order = new Order({userid,orderdetails,status});
       await order.save();
-      res.status(201).json({message:'Order created successfully'});
+      res.status(201).json({message:'Order created successfully',order});
     }
   } 
   catch(error){

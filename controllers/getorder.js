@@ -1,9 +1,12 @@
 const Order=require('../models/orderschema');
 
 const getOrders = async (req,res) => {
+  const {userid}=req.params;
+
+ 
       try {
        
-        const orders = await Order.find();
+        const orders= await Order.findOne({userid});
         
         res.status(201).json({ message: 'Orders retrieved successfully!', orders });
       } catch (err) {
