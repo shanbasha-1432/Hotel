@@ -6,6 +6,6 @@ const get=require('../controllers/getorder');
 const update=require('../controllers/statusupadate')
 
 router.post('/postorder', orderController);
-router.get('/getorder', get);
+router.get('/getorder/:userid', get);
 router.post('/update/:userid/:name',update)
 module.exports = router;
