@@ -7,9 +7,9 @@ const searchuser = async(req,res) =>{
                 const search ={
                         $or: [
                                
-                                 {category: list},
-                                 {name: list},
-                                 {price: list},
+                                {category :{$regex : list,$options:'i'}},
+                                {name : {$regex : list,$options:'i'}}
+                                
                                 
                         ]
                 }
