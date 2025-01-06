@@ -6,7 +6,7 @@ const getOrders = async (req,res) => {
  
       try {
        
-        const orders= await Order.findOne({userid});
+        const orders= await Order.find({userid});
         
         res.status(201).json({ message: 'Orders retrieved successfully!', orders });
       } catch (err) {
